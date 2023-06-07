@@ -1,0 +1,48 @@
+Given a C program as below,
+
+#include <stdio.h>
+void main()
+{
+int i;
+i = 20;
+for (i = 20; i >= 8; i = i-4)
+printf("%d\n", i);   
+}
+
+a) What will be the output printed?
+b) Rewrite the above program using a while loop.
+----
+A do-while loop is a loop statement in C programming that executes the code block at least once before checking the condition. The syntax of a do-while loop in C programming language is:
+
+do {
+   statement(s);
+} while( condition );
+The conditional expression appears at the end of the loop, so the statement(s) in the loop execute once before the condition is tested. If the condition is true, the control jumps back up to do and the statement(s) in the loop execute again. This process repeats until the given condition becomes false.
+a) The output printed will be:
+20
+16
+12
+8
+
+b) Here is the rewritten program using a while loop:
+<code>
+#include <stdio.h>
+void main()
+{
+int i;
+i = 20;
+while (i >= 8)
+{
+printf("%d\n", i);
+i = i-4;
+}
+}
+</code>
+---
+The main difference between a for loop and a while loop is that a for loop is used when the number of iterations is known beforehand, whereas a while loop is used when the number of iterations is not known beforehand. A for loop has three parts: initialization, condition, and increment/decrement. A while loop has only one part: the condition. The syntax of a for loop in C programming language is:
+
+for ( initialization; condition; increment/decrement ) { statement(s); }
+
+The syntax of a while loop in C programming language is:
+
+while( condition ) { statement(s); }
