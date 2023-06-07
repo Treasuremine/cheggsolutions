@@ -1,0 +1,50 @@
+ The BMI is often used to determine whether a person with a sedentary lifestyle is overweight or underweight for his or her height. A person's BMI is calculated with the following formula:
+ where weight is measured in pounds and height is measured in inches. The program should display a message indicating whether the person has optimal weight, is underweight, or is overweight. A sedentary person's weight is considered to be optimal if his or her BMI is between 18.5 and 25 . If theBMIis less than 18.5 , the person is considered to be underweight. If theBMIvalue is greater than 25 , the person is considered to be overweight. 
+Step 2 of 4
+Body Mass Index(BMI):
+
+
+Explanation:
+BMI stands for Body Mass Index and it is a value derived from the mass (weight) and height of a person. It is used to screen for weight categories that may lead to health problems, such as underweight, healthy weight, overweight, and obesity. However, BMI does not measure body fat directly and it does not diagnose the body fatness or health of an individual. To interpret BMI, different ranges are used for adults and children. For adults, a BMI of less than 18.5 is considered underweight, 18.5 to 24.9 is normal or healthy weight, 25.0 to 29.9 is overweight, and 30.0 or higher is obese. For children and teens, the interpretation of BMI depends on age and sex and it is expressed as a percentile
+
+There are different ways to calculate your BMI depending on the type of measurements you have. If you have your weight in kilograms and your height in meters, you can use the formula:
+
+To lower your BMI, you need to consume fewer calories than you burn and increase your physical activity. Some general tips are:
+Explanation:
+- Eat a healthy diet that includes lots of fruits, vegetables, whole grains, lean proteins, and low-fat dairy products.
+- Cut back on sugar, processed carbs, saturated fats, and alcohol.
+- Watch your portion sizes and avoid overeating².
+- Aim for at least 150 minutes of moderate-intensity aerobic activity per week, such as walking, jogging, cycling, or swimming.
+- Include some strength training exercises at least twice a week to build muscle and boost your metabolism.
+- Find ways to be more active throughout the day, such as taking the stairs, parking farther away, or doing household chores.
+Remember to set realistic goals and monitor your progress regularly. Losing even 5% of your weight can have significant health benefits.
+Step 4 of 4
+
+A python function for BMI can take the weight and height of a person as parameters and return the BMI value using the formula
+
+def bmi(weight, height):
+  return weight / height**2
+
+
+def bmi(weight, height):
+  # check if weight and height are positive numbers
+  if weight <= 0 or height <= 0:
+    print("Invalid input")
+    return None
+  # calculate bmi using the formula
+  bmi = weight / height**2
+  # print the bmi value and category
+  print(f"Your BMI is {bmi:.1f}")
+  if bmi < 18.5:
+    print("You are underweight")
+  elif bmi < 25:
+    print("You are normal or healthy weight")
+  elif bmi < 30:
+    print("You are overweight")
+  else:
+    print("You are obese")
+  # return the bmi value
+  return bmi
+
+Final answer
+Celebrate your achievements and reward yourself with non-food treats, such as a massage, a movie, or a new outfit. Seek support from your family, friends, or a professional if you need help or encouragement.
