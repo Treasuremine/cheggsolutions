@@ -1,0 +1,71 @@
+Using getline, char_int, and pr_dec, modify the code shown bellow to ask the user what Fibonacci (or Triangle) number they want and then print it to the screen. You can choose to do either Fibonacci or Triangle numbers.
+
+The code:
+
+fib_sequence = [0] * 25 # Define a list and allocate 25 memory words, initialized to 0
+
+def fibonacci(n):
+
+if n <= 1:
+
+return n
+
+else:
+
+return fibonacci(n-1) + fibonacci(n-2)
+
+fibinput = 16
+
+fibnumber = fibonacci(fibinput)
+
+fib_sequence[fibinput-1] = fibnumber # Store the 16th Fibonacci value in the memory location labeled "fibnumber"
+
+print(fib_sequence) # Print the entire sequence (for testing purposes)
+
+print(fibnumber) # Print only the 16th Fibonacci value
+-------
+Here's the modified code that asks the user what Fibonacci number they want and then prints it to the screen:
+
+```python
+fib_sequence = [0] * 25 # Define a list and allocate 25 memory words, initialized to 0
+
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+fibinput = int(input("Enter the Fibonacci number you want: "))
+
+fibnumber = fibonacci(fibinput)
+
+fib_sequence[fibinput-1] = fibnumber # Store the nth Fibonacci value in the memory location labeled "fibnumber"
+
+print(fib_sequence) # Print the entire sequence (for testing purposes)
+
+print("The Fibonacci number you want is:", fibnumber) # Print only the nth Fibonacci value
+```
+
+Here's how you can modify the code to print Triangle numbers:
+
+```python
+tri_sequence = [0] * 25 # Define a list and allocate 25 memory words, initialized to 0
+
+def triangle(n):
+    if n == 1:
+        return 1
+    else:
+        return n + triangle(n-1)
+
+triinput = int(input("Enter the Triangle number you want: "))
+
+trinumber = triangle(triinput)
+
+tri_sequence[triinput-1] = trinumber # Store the nth Triangle value in the memory location labeled "trinumber"
+
+print(tri_sequence) # Print the entire sequence (for testing purposes)
+
+print("The Triangle number you want is:", trinumber) # Print only the nth Triangle value
+```
+
+I hope this helps!
