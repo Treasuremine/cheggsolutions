@@ -1,0 +1,81 @@
+Pasted from page
+Simple Technology, a Kansas based company, is working on a second project to design and implement a database for tracking vital information for an educational institution. Some of the attributes that they want to store in the database is given as a schema format below. Although a sample raw data was not made available, some of the assumptions were also given to assisting the database design process.
+
+R = (Student ID, Last Name, First name, Course ID, Course Section, Course Name, Grade, Instructor Last Name, Instructor First Name, Office ID, Building, Office No)
+
+Assumptions:
+
+- Student ID is computer generated and unique
+
+- A course can have multiple sections and each section has unique course ID.
+
+- An office is assigned to only one instructor and an instructor can have only one office.
+
+- Two instructors can have same first and last names.
+
+(1) Write all functional dependencies for the above relation.
+
+(2) Using step-by-step process, normalize the above relation to BCNF. Make sure you go through all normalization steps from 1NF to BCNF. Show your work. Your work must include the following:
+
+a. Indicate all anomalies lead to the violation of each normalization conditions.
+
+b. List schemas for the final set of relations that are normalized to BCNF. Make sure to indicate all the primary, foreign, and surrogate keys (if used) in the final schemas.
+
+c. Indicate referential integrity constraint for the final set of schemas.
+----
+Functional dependencies are used to describe the relationships between attributes in a relation. They are used to ensure that the data in a relation is consistent and that there is no redundancy. In the given relation, the functional dependencies are:
+
+- Student ID → Last Name, First Name
+- Course ID, Course Section → Course Name
+- Student ID, Course ID, Course Section → Grade
+- Instructor Last Name, Instructor First Name → Office ID
+- Office ID → Building, Office No
+
+These functional dependencies ensure that the data in the relation is consistent and that there is no redundancy. For example, since Student ID is unique, it can be used to determine the Last Name and First Name of a student. Similarly, since Course ID and Course Section together uniquely identify a course section, they can be used to determine the name of the course. The other functional dependencies ensure that there is no redundancy in the data by ensuring that each attribute is uniquely determined by another attribute or set of attributes.
+
+
+(3) Using straight-to-BCNF process normalize the above relation to BCNF. Make sure you follow the four step process. Show your work:
+
+a. List schemas for final set of relations that are normalized to BCNF, indicating all the primary, foreign, and surrogate keys in the final schemas.
+
+b. Include referential integrity constraint for the final set of schemas.
+----
+BCNF stands for Boyce-Codd Normal Form. It is a normal form used in database normalization. BCNF is an extension of the third normal form (3NF) and is also known as 3.5 Normal Form. BCNF was developed in 1974 by Raymond F. Boyce and Edgar F. Codd to address certain types of anomalies not dealt with by 3NF as originally defined. 
+
+In BCNF, every determinant (attribute that determines another attribute) must be a candidate key². This means that every non-trivial functional dependency in the relation should be a dependency on a superkey⁵. BCNF is stricter than 3NF and ensures that there are no redundancies in the database⁵.
+Sure! Here is a step-by-step process to normalize a relation to BCNF ¹:
+
+1. Identify the functional dependencies in the relation.
+2. Check if the relation is already in BCNF. If it is, then you're done.
+3. If the relation is not in BCNF, then find a functional dependency that violates BCNF.
+4. Decompose the relation into two or more relations so that each relation is in BCNF.
+5. Repeat steps 2-4 until all relations are in BCNF.
+
+Insertion anomaly: May be table have referencing relation and when tuple inserted but the referncing attribute value do not present in referenced attribute, then table not allow to insert a tuple.
+Deletion and Updation Anomaly
+
+May be the tuple to delete or update. the rerfrence relation and refernced attribute value will not allow within the table.
+Referential integrity constraint is a rule that ensures that the relationships between tables remain consistent. It requires that a foreign key value in one table must match a primary key value in another table. In other words, it ensures that the data in one table is consistent with the data in another table. The final set of schemas should have referential integrity constraints to ensure that the data is accurate and consistent. 
+Referential integrity constraint is a database concept that ensures that relationships between tables remain consistent. It requires that a foreign key in one table must match a primary key in another table. For example, if you have two tables, one for customers and one for orders, the customer ID in the orders table must match the customer ID in the customers table. This ensures that you cannot create an order for a customer that does not exist in the customers table. Here is an example of how to create a referential integrity constraint in SQL Server.
+```sql
+ALTER TABLE Orders
+ADD CONSTRAINT FK_CustomerID
+FOREIGN KEY (CustomerID)
+REFERENCES Customers(CustomerID);
+```
+You can also create referential integrity constraints using other database management systems such as MySQL and Oracle.
+---
+The straight-to-BCNF process is a four-step process that can be used to normalize a relation to BCNF. The four steps are:
+
+1. Decompose the relation into a set of binary relations.
+2. Identify the functional dependencies that hold in each of the binary relations.
+3. Check if each binary relation is in 3NF.
+4. If any binary relation is not in 3NF, decompose it further.
+
+The above relation is not provided so I cannot show you how to normalize it to BCNF. However, I hope this information helps you understand the process better.
+
+----
+Boyce-Codd Normal Form (BCNF) is a normal form used in database normalization. A relation is in BCNF if and only if every determinant is a candidate key. To check if a relation is in BCNF, you can follow these steps:
+1. Find the candidate keys of the relation.
+2. For each functional dependency X → Y in the relation, check if X is a superkey. If it is not, then the relation is not in BCNF.
+3. If all functional dependencies satisfy step 2, then the relation is in BCNF.
