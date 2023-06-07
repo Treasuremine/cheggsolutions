@@ -1,0 +1,404 @@
+can u add tax on selected laptop price, can u add asking "do want add more laptop: Y/N" in ProductCatalogGUI, and if selected two laptop  total the laptop price and dispaly all laptops details and print toptal laptops price then when i click buy then dispaly payment things
+
+ProductCatalogGUI:
+<code>
+package IST242Team4;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ProductCatalogGUI extends JFrame {
+private JScrollPane scrollPane;
+protected JTable table;
+protected DefaultTableModel model;
+private JButton buyBtn;
+
+public ProductCatalogGUI() {
+super("Product Catalog");
+
+// Create the table model and table
+model = new DefaultTableModel();
+model.addColumn("ID");
+model.addColumn("Brand");
+model.addColumn("Model");
+model.addColumn("Processor");
+model.addColumn("RAM (GB)");
+model.addColumn("Storage");
+model.addColumn("Price ($)");
+model.addColumn("Condition");
+table = new JTable(model);
+
+// Populate the table with products
+ProductCatalog productCatalog = new ProductCatalog();
+for (Product product : productCatalog.getAllProducts()) {
+model.addRow(new Object[]{
+product.getid(),
+product.getBrand(),
+product.getModel(),
+product.getProcessor(),
+product.getRam(),
+product.getStorage(),
+product.getPrice(),
+product.getCondition()
+});
+}
+
+// Add the table to a scroll pane
+scrollPane = new JScrollPane(table);
+
+// Create the Buy button
+buyBtn = new JButton("Buy");
+
+// Add an action listener to the Buy button
+buyBtn.addActionListener(new ActionListener() {
+public void actionPerformed(ActionEvent e) {
+// Get the selected row
+int row = table.getSelectedRow();
+
+// Check if a row is selected
+if (row == -1) {
+JOptionPane.showMessageDialog(null, "Please select a product.");
+return;
+}
+
+// Get the selected product's ID and price
+int productId = (int) model.getValueAt(row, 0);
+double productPrice = (double) model.getValueAt(row, 6);
+
+// Ask the user if they want to buy the selected product
+int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to buy this product?", "Buy Product", JOptionPane.YES_NO_OPTION);
+if (option == JOptionPane.YES_OPTION) {
+// Create and display the PaymentGUI
+PaymentGUI paymentGUI = new PaymentGUI(productPrice);
+paymentGUI.setVisible(true);
+paymentGUI.setLocationRelativeTo(null);
+}
+}
+});
+
+// Create the content pane and add the components
+Container contentPane = getContentPane();
+contentPane.add(scrollPane, BorderLayout.CENTER);
+contentPane.add(buyBtn, BorderLayout.SOUTH);
+
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+pack();
+setLocationRelativeTo(null);
+}
+
+public static Product getSelectedProduct() {
+return null;
+}
+}
+
+PaymentGUI:
+
+package IST242Team4;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class PaymentGUI extends JFrame {
+
+private JPanel mainPanel;
+private JComboBox<String> paymentMethodComboBox;
+private JLabel paymentMethodLabel;
+private JButton submitButton;
+private JPanel paymentMethodPanel;
+private CardLayout paymentMethodLayout;
+
+private JPanel cardInfoPanel;
+private JLabel cardNameLabel;
+private JTextField cardNameTextField;
+private JLabel cardNumberLabel;
+private JTextField cardNumberTextField;
+private JLabel cvvLabel;
+private JTextField cvvTextField;
+private JLabel expiryDateLabel;
+private JTextField expiryDateTextField;
+
+private JPanel checkInfoPanel;
+private JLabel bankNameLabel;
+private JTextField bankNameTextField;
+private JLabel accountIdLabel;
+private JTextField accountIdTextField;
+private JLabel routingNumberLabel;
+private JTextField routingNumberTextField;
+
+private JPanel cashInfoPanel;
+private JLabel inputMoneyLabel;
+private JTextField inputMoneyTextField;
+
+public PaymentGUI(double productPrice) {
+setTitle("Payment Method");
+setSize(500, 300);
+setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+setLocationRelativeTo(null);
+
+mainPanel = new JPanel();
+mainPanel.setLayout(new BorderLayout(20, 20));
+mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+add(mainPanel);
+
+String[] paymentMethods = {"Credit Card", "Cash", "Check"};
+paymentMethodLabel = new JLabel("Payment Method:");
+paymentMethodLabel.setFont(new Font("Arial", Font.BOLD, 14));
+paymentMethodComboBox = new JComboBox<>(paymentMethods);
+paymentMethodComboBox.addActionListener(new ComboBoxListener());
+JPanel comboBoxPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+comboBoxPanel.add(paymentMethodLabel);
+comboBoxPanel.add(paymentMethodComboBox);
+mainPanel.add(comboBoxPanel, BorderLayout.NORTH);
+
+JLabel productPriceLabel = new JLabel("Price: $" + productPrice);
+productPriceLabel.setFont(new Font("Arial", Font.BOLD, 14));
+comboBoxPanel.add(productPriceLabel);
+
+paymentMethodLayout = new CardLayout();
+paymentMethodPanel = new JPanel(paymentMethodLayout);
+mainPanel.add(paymentMethodPanel, BorderLayout.CENTER);
+
+createCardInfoPanel();
+createCashInfoPanel();
+createCheckInfoPanel();
+paymentMethodPanel.add(cardInfoPanel, "Credit Card");
+paymentMethodPanel.add(cashInfoPanel, "Cash");
+paymentMethodPanel.add(checkInfoPanel, "Check");
+
+submitButton = new JButton("Submit");
+submitButton.setFont(new Font("Arial", Font.BOLD, 14));
+submitButton.addActionListener(new SubmitButtonListener());
+mainPanel.add(submitButton, BorderLayout.SOUTH);
+
+setVisible(true);
+}
+
+private void createCardInfoPanel() {
+cardInfoPanel = new JPanel(new GridLayout(4, 2, 5, 10));
+
+cardNameLabel = new JLabel("Card Name:");
+cardNameTextField = new JTextField();
+cardNumberLabel = new JLabel("Card Number:");
+cardNumberTextField = new JTextField();
+cvvLabel = new JLabel("CVV:");
+cvvTextField = new JTextField();
+expiryDateLabel = new JLabel("Expiry Date (MM/YY):");
+expiryDateTextField = new JTextField();
+
+
+cardInfoPanel.add(cardNameLabel);
+cardInfoPanel.add(cardNameTextField);
+cardInfoPanel.add(cardNumberLabel);
+cardInfoPanel.add(cardNumberTextField);
+cardInfoPanel.add(cvvLabel);
+cardInfoPanel.add(cvvTextField);
+cardInfoPanel.add(expiryDateLabel);
+cardInfoPanel.add(expiryDateTextField);
+}
+
+private void createCashInfoPanel() {
+cashInfoPanel = new JPanel(new GridLayout(1, 2, 5, 10));
+
+inputMoneyLabel = new JLabel("Input Money:");
+inputMoneyLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+inputMoneyTextField = new JTextField();
+
+cashInfoPanel.add(inputMoneyLabel);
+cashInfoPanel.add(inputMoneyTextField);
+}
+
+private void createCheckInfoPanel() {
+checkInfoPanel = new JPanel(new GridLayout(3, 2, 5, 10));
+
+bankNameLabel = new JLabel("Bank Name:");
+bankNameLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+bankNameTextField = new JTextField();
+accountIdLabel = new JLabel("Account ID:");
+accountIdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+accountIdTextField = new JTextField();
+routingNumberLabel = new JLabel("Routing Number:");
+routingNumberLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+routingNumberTextField = new JTextField();
+
+checkInfoPanel.add(bankNameLabel);
+checkInfoPanel.add(bankNameTextField);
+checkInfoPanel.add(accountIdLabel);
+checkInfoPanel.add(accountIdTextField);
+checkInfoPanel.add(routingNumberLabel);
+checkInfoPanel.add(routingNumberTextField);
+}
+
+private class ComboBoxListener implements ActionListener {
+@Override
+public void actionPerformed(ActionEvent event) {
+JComboBox<String> comboBox = (JComboBox<String>) event.getSource();
+String selectedMethod = (String) comboBox.getSelectedItem();
+paymentMethodLayout.show(paymentMethodPanel, selectedMethod);
+}
+}
+
+private class SubmitButtonListener implements ActionListener {
+@Override
+public void actionPerformed(ActionEvent event) {
+String selectedMethod = (String) paymentMethodComboBox.getSelectedItem();
+
+if (selectedMethod.equals("Credit Card")) {
+// Add your credit card processing logic here
+JOptionPane.showMessageDialog(PaymentGUI.this, "Thank you for your purchase! Your credit card transaction was successful.");
+dispose();
+} else if (selectedMethod.equals("Check")) {
+// Add your check processing logic here
+JOptionPane.showMessageDialog(PaymentGUI.this, "Thank you for your purchase! Your check transaction was successful.");
+dispose();
+} else {
+// Cash payment selected
+JOptionPane.showMessageDialog(PaymentGUI.this, "Thank you for your purchase! Your cash transaction was successful.");
+dispose();
+}
+
+
+}
+}
+
+
+}
+
+Sale class:
+
+package IST242Team4;
+public class Sale {
+public static double getTax (double saleTotal, StateCode state) {
+double total = 0.0;
+if (state == StateCode.PA)
+total = .06 * saleTotal;
+
+else if (state == StateCode.NJ)
+total = .06625 * saleTotal;
+
+else if (state == StateCode.GA)
+total = .04 * saleTotal;
+
+else if (state == StateCode.NY)
+total = .04 * saleTotal;
+
+return total ;
+}
+}
+
+package IST242Team4;
+public enum StateCode {PA, NJ, GA, NY}
+
+package IST242Team4;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.Scanner;
+
+public class Main {
+
+private static DatabaseConnection dbConnection;
+private static CustomerGUI customerGUI;
+static Scanner scanner = new Scanner(System.in);
+
+public static void main(String[] args) {
+// Display the CustomerGUI
+customerGUI = new CustomerGUI();
+customerGUI.setVisible(true);
+
+// Wait for the customer to be created before displaying the ProductCatalogGUI
+while (customerGUI.isVisible()) {
+try {
+Thread.sleep(100);
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+}
+
+// Display the ProductCatalogGUI
+ProductCatalogGUI productCatalogGUI = new ProductCatalogGUI();
+productCatalogGUI.setVisible(true);
+
+// Wait for the user to select a product
+while (productCatalogGUI.isVisible() && productCatalogGUI.getSelectedProduct() == null) {
+try {
+Thread.sleep(100);
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+}
+
+}
+}
+</code>
+---
+Yes, you can add tax on the selected laptop price and ask the user if they want to add more laptops. To add tax to the selected laptop price, you can simply multiply the price by the tax rate and add it to the original price. Here's an example:
+
+```java
+// Get the selected product's ID and price
+int productId = (int) model.getValueAt(row, 0);
+double productPrice = (double) model.getValueAt(row, 6);
+
+// Calculate the total price with tax
+double taxRate = 0.08; // 8% tax rate
+double totalPrice = productPrice * (1 + taxRate);
+
+// Ask the user if they want to add more laptops
+int option = JOptionPane.showConfirmDialog(null, "Do you want to add more laptops?", "Add Laptops", JOptionPane.YES_NO_OPTION);
+if (option == JOptionPane.YES_OPTION) {
+    // Code to execute if user selects "Yes"
+} else {
+    // Code to execute if user selects "No"
+}
+```
+
+To display all selected laptops and their details, you can create a new table with a new `DefaultTableModel` and add rows for each selected laptop. Here's an example:
+
+```java
+// Create the table model and table for selected laptops
+DefaultTableModel selectedModel = new DefaultTableModel();
+selectedModel.addColumn("ID");
+selectedModel.addColumn("Brand");
+selectedModel.addColumn("Model");
+selectedModel.addColumn("Processor");
+selectedModel.addColumn("RAM (GB)");
+selectedModel.addColumn("Storage");
+selectedModel.addColumn("Price ($)");
+selectedModel.addColumn("Condition");
+
+// Add rows for each selected laptop
+for (Product product : selectedProducts) {
+    selectedModel.addRow(new Object[]{
+        product.getid(),
+        product.getBrand(),
+        product.getModel(),
+        product.getProcessor(),
+        product.getRam(),
+        product.getStorage(),
+        product.getPrice(),
+        product.getCondition()
+    });
+}
+
+// Create the table for selected laptops
+JTable selectedTable = new JTable(selectedModel);
+
+// Add the table to a scroll pane
+JScrollPane selectedScrollPane = new JScrollPane(selectedTable);
+
+// Calculate the total price of all selected laptops
+double totalPrice = 0;
+for (Product product : selectedProducts) {
+    totalPrice += product.getPrice();
+}
+
+// Display the total price of all selected laptops
+JOptionPane.showMessageDialog(null, "Total Price: $" + totalPrice);
+
+// Create and display the PaymentGUI
+PaymentGUI paymentGUI = new PaymentGUI(totalPrice);
+```
+
+I hope this helps! Let me know if you have any other questions.
