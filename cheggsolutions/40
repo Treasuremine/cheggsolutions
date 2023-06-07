@@ -1,0 +1,18 @@
+C++ code snippet on the system console:
+
+int bob=50;
+ if(bob<0)
+  {
+    cout «< "Bob failed." ;
+    } else if ( bob > 65)
+ cout<< "Bob passed." ;
+ else 
+cout ≪"Bob failed."
+
+Step 2 of 2
+
+Explanation:
+In the present code snippet bob is 50 . Here , in the present scenerio we are using condition if and else. If and else condition favours true or False. the condition full fills or agree the situation then its true and follow the statment and print it. While the if condition is false or not full-fil the situation ,it will transfer to the else . And print the statement. In the code the nested if-else present.
+Ans : Bob passed. because bob is 50. 
+Final answer
+Take care of the curly brackets and semicolon. put in the correct place because it is procedural language.
