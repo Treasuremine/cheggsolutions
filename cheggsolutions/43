@@ -1,0 +1,137 @@
+Allows you to change the margin width, page orientation, page breaks, and more
+
+Explanation:
+Page Setup is a feature in many word processors and document editors that allows you to change the margin width, page orientation, page breaks, and more.
+The best Example is Google Docs.
+Margin width
+
+Explanation:
+In Google Docs, you can change the margin width by using the Page Setup option. Here are the steps to follow:
+
+1. Open your Google Docs file and click on "File" in the top left corner.
+2. Select "Page setup" from the drop-down menu.
+3. In the "Page setup" dialog box, you can adjust the margin width by typing in new margin values or selecting one of the preset options.
+4. Click "OK" to confirm the margin settings for your Google Doc
+Page orientation
+
+Explanation:
+To change the page orientation in Google Docs, you can use the Page Setup option. Here are the steps to follow:
+
+1. Open your Google Docs file and click on "File" in the top left corner.
+2. Select "Page setup" from the drop-down menu.
+3. In the "Page setup" dialog box, you can choose either Portrait or Landscape for the orientation.
+4. Click "OK" to confirm the page orientation settings for your Google Doc
+
+Page Break
+
+Explanation:
+In Google Docs, you can add page breaks to separate content on different pages. Here are the steps to follow:
+
+1. Open your Google Docs file and place the cursor where you want to insert the page break.
+2. Click on "Insert" in the top menu bar.
+3. Select "Break" from the drop-down menu.
+4. Choose "Page break" from the options.
+5. Click "OK" to confirm the page break.
+
+
+Step 2 of 7
+Allows you to automatically search for and replace all instances of a word or phrase in a document.
+
+
+Explanation:
+
+In Google Docs, you can use the "Find and replace" feature to automatically search for and replace all instances of a word or phrase in a document. Here are the steps to follow:
+
+1. Open your Google Docs file.
+2. Click on "Edit" in the top menu bar.
+3. Select "Find and replace" from the drop-down menu.
+4. In the "Find and replace" dialog box, enter the word or phrase you want to find and the replacement text.
+5. Click "Replace all" to replace all instances of the word or phrase in your document.
+
+Explanation:
+In Google Docs, you can use the "Find and replace" feature to automatically search for and replace all instances of a word or phrase in a document. The key used for find and replace is "Ctrl + H" on Windows or "Command + Shift + H" on Mac .
+
+Step 3 of 7
+Rectangular section of the computer's display that shows the program currently being used Should be installed in a computer to protect it from malicious software.
+
+Explanation:
+Rectangular section of the computer's display that shows the program currently being used Should be installed in a computer to protect it from malicious software.Rectangular section of the computer's display that shows the program currently being used Should be installed in a computer to protect it from malicious software
+
+Step 4 of 7
+should be installed in a computer to protect it ffrom malicious software
+
+Explanation:
+Antivirus software is a program that is designed to detect, prevent, and remove malicious software from your computer. It can help protect your computer from viruses, worms, adware, and other threats. Antivirus software should be installed on your computer to help protect it from malicious software.
+
+What is Malware?
+
+Explanation:
+Malware is short for “malicious software.” It is a type of software that is designed to damage or disrupt your computer system. Malware can be used to steal personal information, damage files, or take control of your computer. There are many types of malware, including viruses, worms, Trojans, spyware, and adware.
+Protection from Malware
+
+Explanation:
+some ways to protect your computer from malware:
+Install antivirus software and keep it up to date.
+Keep your operating system and other software up to date.
+Be careful when downloading files or clicking on links.
+Use strong passwords and change them regularly.
+Use a firewall to help block unauthorized access to your computer.
+
+Step 5 of 7
+contains multiple tabs, each with several groups of commands which are used to perform the most common tasks in Word.
+
+Explanation:
+The Ribbon contains multiple tabs, each with several groups of commands which are used to perform the most common tasks in Word.
+
+Step 6 of 7
+Identifies the columns in a worksheet
+
+Explanation:
+
+The columns in a worksheet are identified by letters. The first column is A, the second column is B, and so on. You can use these letters to identify and reference columns in formulas and functions. 
+REFERENCE A CELL IN WORKSHEET
+
+Explanation:
+To reference a cell in Excel, you need to type an equal sign (=) and then select or type the cell or range of cells that you want to use in your formula. You can refer to cells on the same sheet, on another sheet, or in another workbook
+A formula in Excel is used to do mathematical calculations. Formulas always start with the equal sign (=) typed in the cell, followed by your calculation. Formulas can be used for calculations such as: 
+
+=1+1 =2*2 =4/2=2
+ It can also be used to calculate values using cells as input
+Step 7 of 7
+ is a predefined formula that performs common calculations 
+
+=ISFORMULA(cell)
+
+Explanation:
+The ISFORMULA function in Excel is used to test a specified cell to see if it contains a formula. If it does contain a formula, then it will return TRUE. If not, then it will return FALSE                                                                                                                                                            To use the ISFORMULA function in Excel, select a cell and type the following formula: =ISFORMULA(cell). Replace “cell” with the cell reference for the cell you want to check
+A study of workplace design AND physical impact it has on employees.
+
+Explanation:
+There have been several studies that have concentrated on the correlation between the physical workplace design and mental health. 
+Is when the Operating system is running more than one program at one time
+
+Explanation:
+ Multitasking is when the operating system is running more than one program at one time. Multitasking can affect performance in several ways. When the operating system is running more than one program at one time, it can cause the computer to slow down. This is because the computer has to allocate resources to each program, which can cause a bottleneck. Additionally, if one program is using a lot of resources, it can cause other programs to slow down or crash. Finally, multitasking can also affect productivity because it can be difficult to focus on multiple tasks at once.
+
+Combination of a Column letter and a Row number
+
+Explanation:
+A cell reference is a combination of a column letter and a row number that identifies a cell’s location in the worksheet. For example, the cell reference “A1” refers to the cell in column A and row 1. To use cell references in Excel, you can click the cell in which you want to enter the formula. In the formula bar, type = (equal sign). Then, select the cell that contains the value you want or type its cell reference. You can refer to a single cell, a range of cells, a location in another worksheet, or a location in another workbook. When selecting a range of cells, you can drag the border of the cell selection to move the selection or drag the corner of the border to expand the selection
+Specifies the size of the characters in the document
+
+
+Explanation:
+Font size specifies the size of the characters in the document. It is usually measured in points (1 point = 1/72 inch) or pixels.
+
+Final answer
+ Allows you to change the margin width, page orientation, page breaks, and more.
+          PAGE SETUP
+
+ Allows you to automatically search for and replace all instances of a word or phrase in a document.
+        FIND AND REPLACE
+ Rectangular section of the computer's display that shows the program currently being used
+        MONITOR
+ Should be installed in a computer to protect it from malicious software.
+        ANTIVIRUS
+ contains multiple tabs, each with several groups of commands which are used to perform the most common tasks in Word.
+         RIBBON
