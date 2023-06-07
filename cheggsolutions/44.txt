@@ -1,0 +1,114 @@
+a. Express or interpret that Figure verbally without loosing any information;or in other words, put them into the text.
+b. Identify strons entity sets as well as relationship sets and reduce them into relational schemas
+c. For each schema, specify what foreign key constraints, if any, should be created.
+d. Use DDL (Data Definition Language) of SQL to define relation schemas you may have in QUestion \#1 (b and c); you are expected to declare referential-integrity constraints that should hold, if there exists any.
+e. Give TRC expression for the query of "Find all the courses taught in the Fall 2009 semester but not in Spring 2010 semester."
+f. Give relational algebra expression using aggregate fonction for the query of "Find the total number of instructors who teach a course in the Spring 2010 semester."
+g. Use assertion to enforce the constraint that for each tuple in the student relation, the value of the attribute tot cred must egual the sum of credits of courses that the student has completed successfully. Figure 7.15 E-R diagram for a university enterprise.
+
+---
+A database is an organized collection of data. It is used to store and retrieve data in a structured way. 
+
+Databases can be classified into two types: relational and non-relational. Relational databases store data in tables with rows and columns, while non-relational databases store data in other formats such as key-value pairs, documents, or graphs.
+
+I hope this helps. Let me know if you have any other questions.
+This diagram shows the schema diagram for a university enterprise. It has four entities: Classroom, Department, Course and Instructor. Each entity has its own attributes. 
+For example, the Classroom entity has building, room-number and capacity attributes. The Department entity has dept-name, building and budget attributes. The Course entity has course-id, title, dept-name and credits attributes. The Instructor entity has ID, name, depart-name and salary attributes
+
+b. To identify strong entity sets and relationship sets and reduce them into relational schemas, you can follow these steps:
+
+Identify all the entity sets and relationship sets in the ER diagram.
+Identify the primary key for each entity set.
+Identify the foreign keys for each relationship set.
+Create a table for each entity set and include all of its attributes.
+Create a table for each relationship set and include the primary key attributes from each participating entity set as foreign keys.
+If there are any multivalued attributes, create a new table for that attribute and include the primary key of the entity set it belongs to as a foreign key.
+This process is called normalization and it helps to reduce redundancy in the database schema.
+c.
+Foreign key constraints are used to enforce referential integrity between tables. They ensure that the values in one table match the values in another table. To specify foreign key constraints for each schema, you need to identify the relationships between the tables. 
+
+For each relationship, you need to identify the primary key of the parent table and the foreign key of the child table. The foreign key should reference the primary key of the parent table. 
+
+For example, if you have a schema with two tables, Customers and Orders, and there is a one-to-many relationship between them (one customer can have many orders), then you would create a foreign key constraint on the Orders table that references the CustomerID column in the Customers table. This ensures that every order is associated with a valid customer.
+
+In general, you should create foreign key constraints for all relationships between tables to ensure data integrity.
+
+d.
+Here is an example of how you can use DDL (Data Definition Language) of SQL to define relation schemas for Question #1 (b and c) and declare referential-integrity constraints that should hold:
+
+```sql
+CREATE TABLE Students (
+  StudentID INT PRIMARY KEY,
+  Name VARCHAR(255) NOT NULL,
+  Email VARCHAR(255) NOT NULL UNIQUE,
+  Phone VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Courses (
+  CourseID INT PRIMARY KEY,
+  Name VARCHAR(255) NOT NULL,
+  Description TEXT NOT NULL
+);
+
+CREATE TABLE Enrollments (
+  EnrollmentID INT PRIMARY KEY,
+  StudentID INT NOT NULL,
+  CourseID INT NOT NULL,
+  Grade DECIMAL(3,2),
+  FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+  FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+```
+
+In this example, we have three tables: Students, Courses, and Enrollments. The Students table has columns for StudentID, Name, Email, and Phone. The Courses table has columns for CourseID, Name, and Description. The Enrollments table has columns for EnrollmentID, StudentID, CourseID, and Grade.
+
+The Enrollments table has two foreign key constraints that reference the primary keys of the Students and Courses tables. These constraints ensure that every enrollment is associated with a valid student and course.
+
+You can modify this example to fit your specific needs.
+e.
+TRC (Tuple Relational Calculus) is a non-procedural query language that specifies what data to retrieve from a database without specifying how to retrieve it. It is based on the concept of mathematical relations and tuples.
+
+In TRC, you specify the desired result set by describing the properties of the tuples that should be included in the result set. The properties are expressed using logical formulas that are built from atomic formulas and logical connectives.
+
+TRC is used in database management systems to query relational databases. It is often used in conjunction with SQL (Structured Query Language) to provide a more expressive and powerful way to query databases.
+Here is an example of how you can use TRC (Tuple Relational Calculus) expression to find all the courses taught in the Fall 2009 semester but not in Spring 2010 semester:
+
+```
+{<course_name> | ∃c ∈ Courses (c.semester = 'Fall 2009' ∧ c.course_name = <course_name>) ∧ ¬∃c ∈ Courses (c.semester = 'Spring 2010' ∧ c.course_name = <course_name>)}
+```
+
+In this expression, `<course_name>` is a variable that represents the name of a course. The expression reads as "Find all `<course_name>` such that there exists a course `c` in the Courses relation where `c.semester` is 'Fall 2009' and `c.course_name` is `<course_name>`, and there does not exist a course `c` in the Courses relation where `c.semester` is 'Spring 2010' and `c.course_name` is `<course_name>`."
+
+You can modify this expression to fit your specific needs.
+f.
+In the context of relational databases, a relation is a table with columns and rows. Each column represents an attribute of the relation, and each row represents a tuple or record.
+
+A relation is also known as a relation schema or a relation variable. It is defined by its name and its attributes. The attributes have names and domains, which define the set of possible values for each attribute.
+
+Relations are used in relational databases to store and organize data. They provide a simple and flexible way to represent complex data structures.
+
+Relational algebra is a procedural query language that specifies how to retrieve data from a relational database. It is based on the concept of mathematical relations and operations.
+
+In relational algebra, you specify the desired result set by describing a sequence of operations that should be applied to the input relations. The operations include selection (σ), projection (π), union (∪), intersection (∩), difference (-), cartesian product (×), and join (⋈).
+
+Relational algebra is used in database management systems to query relational databases. It provides a formal foundation for the design and implementation of relational databases.
+
+Here is an example of how you can use relational algebra expression with aggregate function to find the total number of instructors who teach a course in the Spring 2010 semester:
+
+```
+σ(semester = 'Spring 2010')(Courses) ⋈ Instructors ⋈ Teach
+π(count(DISTINCT instructor_id))(σ(semester = 'Spring 2010')(Courses) ⋈ Instructors ⋈ Teach)
+```
+
+In this expression, `σ(semester = 'Spring 2010')(Courses)` selects all courses taught in the Spring 2010 semester. The `⋈` operator performs a natural join between the selected courses and the Instructors relation, and then between the result and the Teach relation. The `π(count(DISTINCT instructor_id))` operator computes the number of distinct instructor IDs in the result set.
+
+You can modify this expression to fit your specific needs.
+g.
+
+An assertion is a constraint that might be dependent upon multiple rows of multiple tables. It is a piece of SQL that makes sure a condition is satisfied, else it stops the action being taken on the database¹. 
+
+In the context of the selected text, the assertion is used to enforce the constraint that for each tuple in the student relation, the value of the attribute tot cred must equal the sum of credits of courses that the student has completed successfully.
+In the context of relational databases, a tuple is a row in a relation or table. It represents a single record or instance of the entity represented by the relation.
+
+Each tuple has a value for each attribute of the relation. The values are ordered and correspond to the columns of the relation.
+
