@@ -1,0 +1,105 @@
+Prolog Progarmming Language
+
+Prolog is a programming language that is used for **artificial intelligence** and **computational linguistics**. It is a **declarative language** that is based on **formal logic**. Prolog is used for tasks such as **natural language processing**, **expert systems**, and **automated reasoning** . 
+
+In Prolog, you define a set of facts and rules that describe a problem domain, and then you can ask the system questions about that domain. The system will use the rules and facts to derive an answer to your question .
+
+Steps to write prolog program
+
+The current web page context is about a student question on how to write a program in Prolog ¹. Prolog is a logic programming language that is used for artificial intelligence and computational linguistics ². Here are some steps to write a program in Prolog:
+
+1. Define the problem you want to solve.
+2. Define the facts and rules that describe the problem.
+3. Write the queries that will be used to solve the problem.
+4. Test your program by running it with different inputs.
+
+Here is an example of a simple program that defines a family tree in Prolog :
+
+```
+% Facts
+parent(meenu, jim).
+parent(john, jane).
+parent(jane, jill).
+parent(jane, joan).
+
+% Rules
+father(X, Y) :- parent(X, Y), male(X).
+mother(X, Y) :- parent(X, Y), female(X).
+
+% Queries
+?- father(john, jim).
+?- mother(jane, jill).
+```
+
+1. To find the length of a given list in Prolog, you can write a function called `listLen` that takes two arguments: the list and a variable to store the length. Here's an example of how to use it: `listLen(X,[5,2,4,6,2]).` The output will be `X = 5`.
+
+2. To remove the K'th element from a list in Prolog, you can write a function called `dropK` that takes three arguments: the variable to store the resulting list, the original list and the index of the element to remove. Here's an example of how to use it: `dropK(X,[6,3,5,2,8],2).` The output will be `X = [6, 5, 2, 8]`.
+
+3. To divide a list into two parts at a given index in Prolog, you can write a function called `divide` that takes four arguments: two variables to store the resulting lists, the original list and the index. Here's an example of how to use it: `divide(X,Y,[3,1,9,5,8],3).` The output will be `X = [3, 1, 9], Y = [5, 8]`.
+
+Example
+Here is an example of a Prolog program that finds the factorial of a number:
+
+```prolog
+factorial(0, 1).
+factorial(N, F) :- N > 0, N1 is N - 1, factorial(N1, F1), F is N * F1.
+```
+
+This program defines a predicate `factorial/2` that calculates the factorial of a number. The first clause defines the base case where the factorial of 0 is 1. The second clause defines the recursive case where the factorial of N is N times the factorial of N-1.
+
+You can run this program in a Prolog interpreter by typing:
+
+```prolog
+?- factorial(5, F).
+```
+
+1. Write a function listLen to find the length of a given list
+
+E.g. listLen(X,[5,2,4,6,2]).
+
+Here is a Prolog function that finds the length of a given list:
+
+```prolog
+listLen(0, []).
+listLen(N, [_|T]) :- listLen(M, T), N is M + 1.
+```
+
+The first clause states that the length of an empty list is 0. The second clause recursively calls `listLen` on the tail of the list and adds 1 to the result.
+
+For example, `listLen(X,[5,2,4,6,2])` will return `X = 5`.
+
+2. Write a function dropK that removes the K'th element from a list.
+
+E.g. dropK(X, [6,3,5,2,8], 2).
+To remove the K'th element from a list in Prolog, you can use the built-in predicate `delete/3`. Here is an example of how to use it:
+
+```
+dropK(X, L, K) :- nth1(K, L, X, L1), delete(L, X, L1).
+```
+
+In this example, `X` is the element that is removed from the list `L` at position `K`. The resulting list is stored in `L1`.
+
+For instance, if you want to remove the second element from the list `[6,3,5,2,8]`, you can call the function like this:
+
+```
+dropK(X,[6,3,5,2,8],2).
+```
+
+The resulting value of `X` will be `[6,5,2,8]`.
+
+3. Write a function divide that given an index X and a list L, your function creates 2
+lists L1 and L2, such that L1 consists of all elements until X, and L2 consists of all
+the remaining elements of L.
+
+E.g. divide(X, Y, [3,1,9,5,8], 3).
+
+Here is an example of a Prolog function that divides a list into two sublists based on an index:
+
+```
+divide(X, L, L1, L2) :-
+    length(L1, X),
+    append(L1, L2, L).
+```
+
+The function takes an index `X`, a list `L`, and two output lists `L1` and `L2`. The function first creates an empty list `L1` with the same length as the index `X`. It then uses the built-in `append` predicate to concatenate `L1` and `L2` into the original list `L`.
+For example, if you call the function with the arguments `divide(3, [3, 1, 9, 5, 8], L1, L2)`, it will return `L1 = [3, 1, 9], L2 = [5, 8]`.
