@@ -1,4 +1,24 @@
+A T flip-flop is a type of flip-flop circuit that is used to store one bit of data. It is also known as a toggle flip-flop because of its toggling operation 1. The T flip-flop is a modified form of the JK flip-flop and is constructed by connecting J and K inputs, creating a single input called T 12. The T flip-flop is a single input device and hence by connecting J and K inputs together and giving them with single input called T, we can convert a JK flip-flop into T flip-flop 2. The T flip-flop only works when a clock signal is high. When the T signal is set low (0), it will not affect the present state of the output and the response will not change 1.
+A T flip-flop is a digital circuit that can be used to store one bit of data. It is also known as a toggle flip-flop because it can toggle between two states. The T flip-flop can be designed by making simple modifications to the JK flip-flop 1.
+
+The T flip-flop is a single-input device and has one toggle input (T) and one clock signal input (CLK) 12. The logic symbol of T flip-flop is shown below:
+
+     +-----+ 
+T ---|     |
+     |  T  |--- Q
+CLK--|     |
+     +-----+
+
+We can construct a T flip-flop by any of the following methods:
+
+Connecting the output feedback to the input in SR flip-flop.
+By passing the AND gate’s output as input to the NOR gate of the SR flip-flop 3.
+
+Application
+A T flip-flop is a digital circuit that can be used for toggling. It is used in frequency dividers, counters, binary counters, etc123. The major applications of T flip-flop are counters and control circuits 3. It can also be used as a data storage where the Flip-Flops are connected in series in which each Flip-Flop stores one-bit information
+
 A ripple up-counter is a type of counter that works to count the pulses according to the flip-flop speed. It is an asynchronous up-counter that is made up of different flip-flops in a cascade manner. The output of each T flip-flop changes asynchronously. The input of all the T flip-flops is connected to 1.
+
 To design a ripple down-counter using D flip-flops, you can use the same design as a T flip-flop down-counter. The clock signal that is provided to the succeeding flip-flops in the D flip-flop up-counter will be changed as done in the T flip-flop down-counter. The output of each flip-flop will be fed as a clock input to the succeeding D flip-flops1.
 Here's an example Verilog code for a 4-bit up-down counter:
 
